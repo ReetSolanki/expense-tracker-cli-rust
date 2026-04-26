@@ -2,31 +2,24 @@ pub mod models;
 pub mod storage;
 pub mod commands;
 
-use clap::{Parser, Subcommand};
+use clap::{Command, arg, command, ArgGroup};
 use models::Expense;
 // use serde_json::{self, to_string_pretty};
 
 use crate::{commands::{add, delete, list}, storage::{load_expenses, save_expenses}};
 
-#[derive(Parser)]
-struct Cli {
-    #[command(subcommand)]
-    command: Commands,
-}
-
-#[derive(Subcommand)]
-enum Commands {
-    Delete { id: i32 },
-}
 
 fn main() {
-    let cli = Cli::parse();
-
-    match cli.command {
-        Commands::Delete { id } => { 
-            delete(id);
-        }
-    }
+    let matches = command!()
+        .arg(arg!(--two <VALUE>))
+        .arg(arg!(--one <VALUE>))
+        .group(
+            ArgGroup::new("action")
+                .args(["one", "two"])
+                .required(true),
+        )
+        .get_matches();
+    
 }
 
 // let expenses_vector = load_expenses();
