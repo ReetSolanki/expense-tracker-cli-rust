@@ -33,5 +33,19 @@
     "category": "fun",
     "note": "Took junior out for a movie",
     "date": "2025-04-23"
+  },
+  {
+    "id": 3,
+    "amount": 20.0,
+    "category": "food",
+    "note": "Sting energy",
+    "date": "2026-04-27"
+  },
+  {
+    "id": 4,
+    "amount": 40.0,
+    "category": "food",
+    "note": "Nescafe to feel fresh",
+    "date": "27-04-2026"
   }
 ]

@@ -2,6 +2,11 @@
 use crate::models::Expense;
 use crate::storage::*;
 
+pub fn summary(){  // Shows expense with 
+    let mut expenses_vector = load_expenses();
+    
+}
+
 pub fn add(mut new_expense: Expense){
     let mut expenses_vector = load_expenses();
     new_expense.id = expenses_vector.last().map_or(1, |e| e.id + 1);

@@ -4,26 +4,19 @@ pub mod commands;
 
 use clap::{Arg, Command, arg, command, value_parser};
 use models::Expense;
+use chrono::Local;
 
-use crate::{commands::{add, delete, list}};
+use crate::commands::{add, delete, list, summary};
 
 fn main() {
     let matches = command!()
         .subcommand(
-            Command::new("delete")
-                .arg(arg!(<delete>)
-                .value_parser(value_parser!(i32)))
-        )
-        .subcommand(
-            Command::new("list")
-                .arg(arg!([list]))   // square brackets to make the value optional (list travel / list) 
-        )
-        .subcommand(
             Command::new("add")
+                .about("Add an expense")
                 .arg(
                     Arg::new("amount")
                         .required(true)
-                        .long("amount")//Adding long, makes the arguments named than being a positional argument
+                        .long("amount")       //Adding long, makes the arguments named than being a positional argument
                         .value_parser(value_parser!(f64))
                 )
                 .arg(
@@ -39,6 +32,21 @@ fn main() {
                         .value_parser(value_parser!(String))
                 )
         )
+        .subcommand(
+            Command::new("delete")
+                .arg(arg!(<delete>)
+                .value_parser(value_parser!(i32)))
+                .about("Delete an expense with id")
+        )
+        .subcommand(
+            Command::new("list")
+                .arg(arg!([list]))   // square brackets to make the value optional (list travel / list) 
+                .about("List all expenses or list expenses of category")
+        )
+        .subcommand(
+            Command::new("summary")
+                .about("Shows expense summary by category")
+        )
         .get_matches();
 
     match matches.subcommand() {
@@ -50,13 +58,16 @@ fn main() {
             let val = sub_m.get_one::<String>("list");
             list(val.cloned());
         }
+        Some(("summary", _)) => {
+            summary();
+        }
         Some(("add", sub_m)) => {
             let expense = Expense{
                 id: 0,
                 amount: *sub_m.get_one::<f64>("amount").unwrap(),
                 category: sub_m.get_one::<String>("category").unwrap().clone(),
                 note: sub_m.get_one::<String>("note").unwrap().clone(),
-                date: "2025-04-23".to_string()  ,
+                date: Local::now().format("%d-%m-%Y").to_string()  ,
             };
             add(expense);
         }
