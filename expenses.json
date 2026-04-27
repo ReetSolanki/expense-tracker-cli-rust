@@ -1,16 +1,37 @@
 [
   {
-    "id": 0,
+    "id": 7,
     "amount": 34.0,
     "category": "food",
     "note": "Just a test",
     "date": "2025-04-23"
   },
   {
-    "id": 7,
+    "id": 8,
+    "amount": 34.0,
+    "category": "travel",
+    "note": "Just a test",
+    "date": "2025-04-23"
+  },
+  {
+    "id": 9,
     "amount": 34.0,
     "category": "food",
     "note": "Just a test",
+    "date": "2025-04-23"
+  },
+  {
+    "id": 1,
+    "amount": 32.4,
+    "category": "luxury",
+    "note": "I was just make myself happy",
+    "date": "2025-04-23"
+  },
+  {
+    "id": 2,
+    "amount": 67.69,
+    "category": "fun",
+    "note": "Took junior out for a movie",
     "date": "2025-04-23"
   }
 ]

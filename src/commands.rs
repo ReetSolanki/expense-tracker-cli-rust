@@ -2,8 +2,9 @@
 use crate::models::Expense;
 use crate::storage::*;
 
-pub fn add(new_expense: Expense){
+pub fn add(mut new_expense: Expense){
     let mut expenses_vector = load_expenses();
+    new_expense.id = expenses_vector.last().map_or(1, |e| e.id + 1);
     expenses_vector.push(new_expense);
     save_expenses(&expenses_vector);
 }
