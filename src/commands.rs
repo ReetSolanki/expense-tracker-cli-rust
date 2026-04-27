@@ -1,10 +1,21 @@
+use std::collections::HashMap;
+
 // use clap::builder::Str;
 use crate::models::Expense;
 use crate::storage::*;
 
-pub fn summary(){  // Shows expense with 
-    let mut expenses_vector = load_expenses();
+pub fn summary(){  // Show total spent per category
+    let expenses_vector = load_expenses();
+    let mut map: HashMap<String, f64> =  HashMap::new();
     
+    expenses_vector.iter().for_each(|e| {
+        *map.entry(e.category.clone()).or_insert(0.0) += e.amount;
+    });
+
+    println!("Category  Amount");
+    for e in map{
+        println!("{}:   {:.2}", e.0, e.1);
+    }
 }
 
 pub fn add(mut new_expense: Expense){

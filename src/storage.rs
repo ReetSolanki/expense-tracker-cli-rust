@@ -12,8 +12,8 @@ pub fn load_expenses() -> Vec<Expense>{
         Err(_) => return vec![],
     };
 
-    from_str::<Vec<Expense>>(&data)
-        .expect("Failed to parse JSON file")
+    return from_str::<Vec<Expense>>(&data)
+            .expect("Failed to parse JSON file")
 }
 
 // Write: Save the Vec back to expenses.json
