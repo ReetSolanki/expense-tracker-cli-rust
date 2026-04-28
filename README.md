@@ -1,8 +1,8 @@
-# 💸 expense-tracker
+# Expense-tracker
 
 A CLI tool to log, list, and summarize daily expenses — built in Rust without a database or web server.
 
-Data is persisted locally in a `expenses.json` file. No setup required beyond `cargo build`.
+Data is stored locally in a `expenses.json` file. No setup required beyond `cargo build`.
 
 ---
 
@@ -101,7 +101,7 @@ expense-tracker/
 
 ---
 
-## What I learned building this
+<!-- ## What I learned building this
 
 - Structuring a Rust project across multiple modules
 - Using `HashMap` and iterators (`filter`, `for_each`) on real data
@@ -109,7 +109,7 @@ expense-tracker/
 - Parsing typed CLI arguments with Clap (named flags + subcommands)
 - Matching on `Option<String>` for optional filters
 
----
+--- -->
 
 ## Next
 
